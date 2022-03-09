@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基于知识图谱的电影问答系统</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/bootstrap4.6min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/init.css') }}">
+    <script src="{{ url_for('static',filename='jquery/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.js')}}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="{{url_for('static',filename='images/icon.png')}}" width="30" height="30"
+                 class="d-inline-block align-top" alt="">
+            基于知识图谱的电影问答系统
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ml-4">
+                    <form class="form-inline my-2 my-lg-0" method="post" action="{{url_for('web_answer')}}">
+                        <input class="form-control mr-sm-4" type="search" placeholder={{answer.question}} aria-label="Search" name="question"
+                               style="width:400px">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <!-- Example single danger button -->
+        <!-- Example single danger button -->
+        <div class="dropdown">
+            <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-expanded="false">
+                可搜索内容包括
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">XX电影的评分</a>
+                <a class="dropdown-item" href="#">XX电影的上映时间</a>
+                <a class="dropdown-item" href="#">XX电影是什么类型的</a>
+                <a class="dropdown-item" href="#">XX演过什么电影</a>
+                <a class="dropdown-item" href="#">XX电影的简介</a>
+                <a class="dropdown-item" href="#">XX电影的演员有哪些</a>
+                <a class="dropdown-item" href="#">XX演员和XX演员合作过的电影</a>
+                <a class="dropdown-item" href="#">XX演员出演过的电影中评分高于X的电影有哪些</a>
+                <a class="dropdown-item" href="#">XX演员出演过的电影中评分低于X的电影有哪些</a>
+                <a class="dropdown-item" href="#">XX演员共出演过多少部电影</a>
+                <a class="dropdown-item" href="#">XX演员的简介</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1>基于知识图谱的电影问答系统</h1>
+        <p class="lead text-muted">Film question answering system based on knowledge graph</p>
+    </div>
+</section>
+  <p class="card-text" style="text-align: center">
+    {{answer.content}}
+  </p>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm " style="text-align: center">
+                    <div class="list-group">
+                        <li class="list-group-item active" aria-current="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-camera-reels" viewBox="0 0 16 16">
+                                <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM1 3a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/>
+                                <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7zm6 8.73V7.27l-3.5 1.555v4.35l3.5 1.556zM1 8v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1z"/>
+                                <path d="M9 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM7 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                            </svg>
+                            部分电影名称
+                        </li>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">英雄 花样年华 卧虎藏龙
+                            满城尽带黄金甲</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">暗战 最佳拍档 霍元甲
+                            十面埋伏 功夫</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">全职杀手 荆轲刺秦王
+                            饮食男女 重庆森林</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">城市猎人 英雄本色 精武门
+                            杀破狼</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-warning">非诚勿扰 投名状
+                            三国之见龙卸甲 파이란</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-info">赌神2 倩女幽魂 窃听风云
+                            建国大业</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">花木兰 叶问2: 宗师传奇
+                            岁月神偷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm" style="text-align: center">
+                    <ul class="list-group">
+                        <li class="list-group-item active" aria-current="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-film" viewBox="0 0 16 16">
+                                <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm4 0v6h8V1H4zm8 8H4v6h8V9zM1 1v2h2V1H1zm2 3H1v2h2V4zM1 7v2h2V7H1zm2 3H1v2h2v-2zm-2 3v2h2v-2H1zM15 1h-2v2h2V1zm-2 3v2h2V4h-2zm2 3h-2v2h2V7zm-2 3v2h2v-2h-2zm2 3h-2v2h2v-2z"/>
+                            </svg>
+                            电影分类
+                        </li>
+                        <ul class="list-group list-group-horizontal-lg">
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-warning">冒险</li>
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-success">奇幻</li>
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-danger">动画</li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal-sm">
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-primary">剧情</li>
+                            <li class="list-group-item flex-fill list-group-item-action ">恐怖</li>
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-info">动作</li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal-md">
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-warning">喜剧</li>
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-success">历史</li>
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-danger">西部</li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal-md">
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-primary">惊悚</li>
+                            <li class="list-group-item flex-fill list-group-item-action">犯罪</li>
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-info">科幻</li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal-md">
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-warning">爱情</li>
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-success">家庭</li>
+                            <li class="list-group-item flex-fill list-group-item-action list-group-item-danger">战争</li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm " style="text-align: center">
+                    <div class="list-group">
+                        <li class="list-group-item active" aria-current="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-people" viewBox="0 0 16 16">
+                                <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                            </svg>
+                            部分演员
+                        </li>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">巩俐 乔宏 李连杰 梁朝伟
+                            张曼玉 章子怡</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">甄子丹 周润发 吴宇森
+                            张耀扬 成龙</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">Paulyn Sun 刘烨
+                            Hong Chen 刘德华</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">张柏芝 郭富城 林青霞 舒淇
+                            梁家辉</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-warning">周星驰 莫文蔚 邱淑贞
+                            张国荣 张家辉</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-info">孙红雷 张雨绮 葛优 赵薇
+                            黄圣依</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">陈数 佟大为 周海媚 胡军
+                            张涵予</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer navbar-fixed-bottom mt-4 bg-dark text-light small" style="height: 300px">
+    <div class="container">
+        <div class="row pt-3 pb-5">
+            <div class="col-sm-12 col-md-10 p-3">
+                <div>
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">关于我们</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">联系我们</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">项目实践</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">团队信息</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-muted">
+                    <i>©2021-2022</i> 中国传媒大学舆情实验室 <span class="p-3">版权所有</span> <a class="text-muted"
+                                                                                   href="#">京ICP备19057319号-1</a>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-2  p-3">
+                <figure class="figure">
+                    <img src="{{ url_for('static',filename='images/01.jpg') }}"
+                         style="max-height: 100px;height: auto;"
+                         class="figure-img rounded" alt="qrcode">
+                    <figcaption class="figure-caption">关注我们请扫码</figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
